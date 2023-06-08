@@ -7,13 +7,12 @@ namespace StonksApp.Controllers
 {
     public class StonksController : Controller
     {
-        private readonly GetStockQuoteService _stockQuoteService;
-        private readonly GetStockDescriptionService _stockDescriptionService;
+        private readonly GetStockService _stockService;
+
         private readonly Stonk stonkModel;
-        public StonksController(GetStockQuoteService stonksQuote, GetStockDescriptionService stonksDescription,  IOptions<Stonk> stonkOptions)
+        public StonksController(GetStockService stonksService,   IOptions<Stonk> stonkOptions)
         {
-            _stockQuoteService = stonksQuote;
-            _stockDescriptionService = stonksDescription;
+            _stockService = stonksService;
             stonkModel = stonkOptions.Value;
         }
 
@@ -21,8 +20,8 @@ namespace StonksApp.Controllers
         public async Task<IActionResult> DisplayStonks()
         {
 
-            Dictionary<string, object> quoteData = await _stockQuoteService.GetQuoteData(stonkModel.Symbol);
-            Dictionary<string, object> descriptionData = await _stockDescriptionService.GetDescriptionData(stonkModel.Symbol);
+            Dictionary<string, object> quoteData = await _stockService.GetQuoteData(stonkModel.Symbol);
+            Dictionary<string, object> descriptionData = await _stockService.GetDescriptionData(stonkModel.Symbol);
             
             stonkModel.Value = Convert.ToDouble(quoteData["c"].ToString());
             stonkModel.PrecentageChange = Convert.ToDouble(quoteData["dp"].ToString());
