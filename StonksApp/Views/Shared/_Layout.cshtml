@@ -8,7 +8,11 @@
     <script src="~/js/bootstrap.js"></script>
 </head>
 <body>
-    <div class="col-xl-9 col-lg-12 col-md-12 col-sm-12">
+    <div class="col-xl-9 col-lg-12 col-md-12 col-sm-12 m-4">
+        <ul class="nav nav-tabs">
+            <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="~/" aria-selected="true">Home</a></li>
+            <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="~/" aria-selected="false">Trade</a></li>
+        </ul>
         @RenderBody()
     </div>
 </body>

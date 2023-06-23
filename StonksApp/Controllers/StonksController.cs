@@ -2,12 +2,14 @@
 using StonksApp.Services;
 using StonksApp.Models;
 using Microsoft.Extensions.Options;
+using StonksApp.ServiceContracts;
+
 
 namespace StonksApp.Controllers
 {
     public class StonksController : Controller
     {
-        private readonly GetStockService _stockService;
+        private readonly IGetStockService _stockService;
 
         private readonly Stonk stonkModel;
         public StonksController(GetStockService stonksService,   IOptions<Stonk> stonkOptions)
